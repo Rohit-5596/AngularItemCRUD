@@ -1,0 +1,34 @@
+<p>additem works!</p>
+<div class="container">
+    <form itemForm="ngForm" (ngSubmit)="add()" class="was-validated">
+    <div class="form-group">
+        Id: <input type="number" name="id" id="id" pattern="[0-9]{3,}" [(ngModel)]="items.id" #itemid="ngModel" class="form-control" required>
+        <span class="invalid-feedback" *ngIf="itemid.touched && itemid.errors?.required"> id required</span>
+        <span class="alert alert-danger" *ngIf="itemid.errors?.pattern && itemid.touched"> id should be 3 digit</span>
+    </div>
+
+    <div class="form-group">
+            Name: <input type="text" name="name" id="name" pattern="[A-Z]{1}[a-z]{2,}" [(ngModel)]="items.name" #itemname="ngModel" class="form-control" required>
+            <span class="invalid-feedback" *ngIf="itemname.touched && itemname.errors?.required">name required</span>
+            <span class="alert alert-danger" *ngIf="itemname.errors?.pattern && itemname.touched">name should start with capital</span>
+        </div>
+
+        
+    <div class="form-group">
+            Price: <input type="number" name="price" id="price" pattern="[0-9]{3,}" [(ngModel)]="items.price" #itemprice="ngModel" class="form-control" required>
+            <span class="invalid-feedback" *ngIf="itemprice.errors?.required && itemprice.touched">price required</span>
+            <span class="alert alert-danger" *ngIf="itemprice.errors?.email && itemprice.touched">not a valid price</span>
+        </div>
+
+        <div class="form-group">
+                Brand: <input type="text" name="brand" id="brand" [(ngModel)]="items.brand" #itembrand="ngModel" class="form-control" required>
+                <span class="invalid-feedback" *ngIf="itembrand.touched && itembrand.errors?.required">Brand required</span>
+                <span class="alert alert-danger" *ngIf="itembrand.errors?.pattern && itembrand.touched">Invalid Brand</span>
+            </div>
+        
+        <button class="btn btn-primary" type="submit" [disabled]="itemForm.invalid">Save</button>
+        {{custForm}}
+          
+    </form>
+    </div>
+    
